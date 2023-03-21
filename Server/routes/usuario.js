@@ -6,7 +6,7 @@ const usuarioCtrl = require ('../controllers/usuario.controller');
 
 router.get('/getUsuarios',fnGetUsuario);
 router.post('/post', setUsuario);
-router.post('/actualizarUsuario',actualizarUsuario);
+
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -27,11 +27,24 @@ function setUsuario(req, res) {
             res.json(result);
         });
 }
-function actualizarUsuario(req, res) {
+/*function actualizarUsuario(req, res) {
     let datos = req.body;
     usuarioConsolaCtrl.actualizarUsuario(datos)
         .then(function (result) {
             res.json(result);
         })
-}
+}*/
+router.put('/usuarios/:id', (req, res) => {
+    let id = req.params.id;
+    const datosActualizados = req.body;
+  
+    usuarioCtrl.actualizarUsuario(id, datosActualizados)
+      .then(resultado => {
+        console.log("resultado",resultado);
+        res.status(200).json(resultado);
+      })
+      .catch(error => {
+        res.status(400).json(error);
+      });
+  });
 module.exports = router;

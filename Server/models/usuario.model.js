@@ -4,6 +4,7 @@ module.exports = {
     fnGetUsuario: fnGetUsuario,
     setUsuario:setUsuario,
     existNomUsuario:existNomUsuario,
+    findByIdAndUpdate:findByIdAndUpdate,
     }
 console.log("funcion model")
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -30,4 +31,14 @@ function existNomUsuario(datos) {
     `call setUsuarios(@idrol,@num_empleado,@nombre,@apellidoP,@apellidoM,@idlugar,@idarea,@email,@password,@status)`
     ,datos)
 }
-
+function findByIdAndUpdate(id, datos) {
+    // Aquí iría el código para actualizar un usuario por su ID utilizando alguna base de datos
+    const query = `UPDATE usuarios SET nombre = '${datos.nombre}', email = '${datos.email}', password = '${datos.password}' WHERE id = ${id};`;
+    // Ejemplo con console.log
+    console.log(`Actualizando usuario con ID ${id}:`);
+    return helpers.mysqlQuery('PUT', conn_mysql, query)
+    .then((resultado) => {
+      console.log(`Usuario actualizado con éxito: ${resultado}`);
+      return resultado;
+    })
+  }

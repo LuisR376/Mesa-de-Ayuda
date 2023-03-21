@@ -4,6 +4,7 @@ const usuarioModels = require ('../models/usuario.model');
 module.exports = {
     fnGetUsuario: fnGetUsuario,
     setUsuario:setUsuario,
+    actualizarUsuario:actualizarUsuario
 }
 
 function fnGetUsuario(){
@@ -30,3 +31,20 @@ function setUsuario(datos){
             });
     });
 }
+function actualizarUsuario(datos) {
+    const id = datos.id;
+    const datosActualizados = datos.datosActualizados;
+  
+    return new Promise((resolve, reject) => {
+        usuarioModels.findByIdAndUpdate(id, datosActualizados, { new: true })
+        .then((usuarioActualizado) => {
+          resolve(usuarioActualizado);
+        })
+        .catch((error) => {
+          console.error(error);
+          reject({ mensaje: 'Error al actualizar el usuario' });
+        });
+    });
+  }
+
+
