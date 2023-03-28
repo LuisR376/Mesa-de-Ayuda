@@ -8,7 +8,6 @@ api.options('*',cors())
 api.use(bodyParser.urlencoded({extended:true}));
 api.use(bodyParser.json());
 console.log("api")
-
 const usuario = require ('./Server/routes/usuario.js');
 api.use('/usuario',usuario)
 
@@ -44,5 +43,4 @@ api.use('/tipodeServicio',tipodeServicio)
 
 const iniciarSesion = require ('./Server/routes/iniciarSesion');
 api.use('/iniciarSesion',iniciarSesion)
-
 module.exports = api;

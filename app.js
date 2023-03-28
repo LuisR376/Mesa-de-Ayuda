@@ -18,5 +18,8 @@ main.start()
     });
 });
 //rutas declaradas para el uso de ruta y archivos media
+app.use( express.static('public') );
 app.use(api);
+
+
 module.exports = app;

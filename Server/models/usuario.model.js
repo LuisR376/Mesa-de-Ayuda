@@ -32,7 +32,7 @@ function existNomUsuario(datos) {
     ,datos)
 }
 function findByIdAndUpdate(id, datos) {
-    // Aquí iría el código para actualizar un usuario por su ID utilizando alguna base de datos
+    // Código para actualizar un usuario por su ID 
     const query = `UPDATE usuarios SET nombre = '${datos.nombre}', email = '${datos.email}', password = '${datos.password}' WHERE id = ${id};`;
     // Ejemplo con console.log
     console.log(`Actualizando usuario con ID ${id}:`);
