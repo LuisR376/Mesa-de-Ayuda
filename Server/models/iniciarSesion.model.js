@@ -13,7 +13,7 @@ function verificaExistUsr(num_empleado) {
 function ObtenerUsuarioId(id) {
     return helpers.mysqlQuery('GET', conn_mysql,
        // `call getUsrById(@id_usuario_sistema); `
-    `SELECT u.*, r.descripcion_rol, r.clave FROM 
+       `SELECT u.*, r.descripcion_rol, r.clave FROM 
     usuarios u,
     rol r
     WHERE 

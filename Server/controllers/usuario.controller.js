@@ -38,6 +38,7 @@ function actualizarUsuario(datos) {
     return new Promise((resolve, reject) => {
         usuarioModels.findByIdAndUpdate(id, datosActualizados, { new: true })
         .then((usuarioActualizado) => {
+            console.log("Pasoooooo2 Usuario Actualizado", usuarioActualizado);
           resolve(usuarioActualizado);
         })
         .catch((error) => {

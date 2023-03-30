@@ -33,7 +33,8 @@ function existNomUsuario(datos) {
 }
 function findByIdAndUpdate(id, datos) {
     // Código para actualizar un usuario por su ID 
-    const query = `UPDATE usuarios SET nombre = '${datos.nombre}', email = '${datos.email}', password = '${datos.password}' WHERE id = ${id};`;
+    const query = `UPDATE usuarios SET fecha = @fecha, idrol = @idrol, num_empleado	 = @num_empleado, nombre = @nombre, apellidoP = @apellidoP, apellidoM = @apellidoM, idlugar = @idlugar, 
+    idarea = @idarea, email = @email, password = @password, status = @status WHERE id = @id`
     // Ejemplo con console.log
     console.log(`Actualizando usuario con ID ${id}:`);
     return helpers.mysqlQuery('PUT', conn_mysql, query)

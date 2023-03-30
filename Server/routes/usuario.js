@@ -6,7 +6,7 @@ const usuarioCtrl = require ('../controllers/usuario.controller');
 
 router.get('/getUsuarios',fnGetUsuario);
 router.post('/post', setUsuario);
-
+router.post('/actualizar', setUsuario);
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -40,7 +40,7 @@ router.put('/usuarios/:id', (req, res) => {
   
     usuarioCtrl.actualizarUsuario(id, datosActualizados)
       .then(resultado => {
-        console.log("resultado",resultado);
+        console.log("Pasooooooo1 Resultado",resultado);
         res.status(200).json(resultado);
       })
       .catch(error => {
