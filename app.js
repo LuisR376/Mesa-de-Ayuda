@@ -1,6 +1,7 @@
 //estricto en la programacion
 'use strict'
 //expres ayuda a darle una estructura a node y no manejarlo con consola
+require('dotenv').config();
 const express = require('express')
 const app = express();
 const main = require('./Server/models/main.js');
@@ -8,7 +9,7 @@ const api = require('./api')
 
 //cabeceras de acceso de http
 
-const puerto = 5013;
+const puerto = process.env.PORT;
 app.set('port', (process.env.PORT || puerto))
 main.start()
 .then(function(){
