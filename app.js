@@ -6,7 +6,7 @@ const express = require('express')
 const app = express();
 const main = require('./Server/models/main.js');
 const api = require('./api')
-
+const path = require('path');
 //cabeceras de acceso de http
 
 const puerto = process.env.PORT;
@@ -19,7 +19,7 @@ main.start()
     });
 });
 //rutas declaradas para el uso de ruta y archivos media
-app.use( express.static('public') );
+app.use(express.static(path.join(__dirname, './Server/public')));
 app.use(api);
 
 

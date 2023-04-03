@@ -4,7 +4,7 @@
   "scripts": {
     "build-js": "watchify client/app.js -o public/js/build.js",
     "build-js-min": "browserify -g uglifyify client/app.js > public/js/build.min.js",
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "develop": "npm run build-js",
     "create": "node ./server/modules/generator.js 1",
     "destroy": "node ./server/modules/generator.js 2",

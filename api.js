@@ -2,14 +2,22 @@ const express = require ('express');
 const bodyParser = require('body-parser'); //ayuda con post get
 const api = express();
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 
 api.use(cors());
 api.options('*',cors())
 api.use(bodyParser.urlencoded({extended:true}));
 api.use(bodyParser.json());
+
 console.log("api")
 const usuario = require ('./Server/routes/usuario.js');
 api.use('/usuario',usuario)
+
+api.get('/', (req, res) => {
+    res.send('Bienvenido a mi API');
+    
+  });
 
 const activo = require ('./Server/routes/activosInventario');
 api.use('/activos',activo)
@@ -43,4 +51,5 @@ api.use('/tipodeServicio',tipodeServicio)
 
 const iniciarSesion = require ('./Server/routes/iniciarSesion');
 api.use('/iniciarSesion',iniciarSesion)
+
 module.exports = api;
