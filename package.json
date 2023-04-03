@@ -4,7 +4,7 @@
   "scripts": {
     "build-js": "watchify client/app.js -o public/js/build.js",
     "build-js-min": "browserify -g uglifyify client/app.js > public/js/build.min.js",
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "develop": "npm run build-js",
     "create": "node ./server/modules/generator.js 1",
     "destroy": "node ./server/modules/generator.js 2",
@@ -24,6 +24,7 @@
     "bcrypt": "^5.1.0",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.7.2",
+    "dotenv": "^16.0.3",
     "jwt-simple": "^0.5.6",
     "moment": "^2.29.4",
     "mysql": "^2.18.1",
