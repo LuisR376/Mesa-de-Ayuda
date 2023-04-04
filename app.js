@@ -1,7 +1,7 @@
 //estricto en la programacion
 'use strict'
 //expres ayuda a darle una estructura a node y no manejarlo con consola
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 const express = require('express')
 const app = express();
 const main = require('./Server/models/main.js');
