@@ -40,8 +40,8 @@ api.use('/licencias',licencias)
 const rol = require ('./Server/routes/rol');
 api.use('/rol',rol)
 
-const tipoactivo = require ('./Server/routes/tipoactivo');
-api.use('/tipoactivo',tipoactivo)
+const tipoActivo = require ('./Server/routes/tipoActivo');
+api.use('/tipoActivo',tipoActivo)
 
 const usuario_rel_servicio = require ('./Server/routes/usuario_rel_servicio');
 api.use('/usuario_rel_servicio',usuario_rel_servicio)
