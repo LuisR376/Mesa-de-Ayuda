@@ -52,4 +52,12 @@ api.use('/tipodeServicio',tipodeServicio)
 const iniciarSesion = require ('./Server/routes/iniciarSesion');
 api.use('/iniciarSesion',iniciarSesion)
 
+const detallePc = require ('./Server/routes/detallePc');
+api.use('/detallePc',detallePc)
+
+const ram = require ('./Server/routes/ram');
+api.use('/ram',ram)
+
+const discoduro = require ('./Server/routes/discoduro');
+api.use('/discoduro',discoduro)
 module.exports = api;
