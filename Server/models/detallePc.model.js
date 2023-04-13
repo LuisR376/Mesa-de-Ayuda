@@ -22,6 +22,6 @@ function setPc(datos) {
 function existDetallePc(datos) {
     console.log("Funcion existDetallePc",datos)
     return helpers.mysqlQuery('GET', conn_mysql,
-    `call setLugar(@ubicacion)`
+    `call setDetallepc(@tipo_de_pc,@modelo,@num_serie,@folio_compra,@procesador,@iddiscoduro,@idram,@marca,@Sistema_Operativo,@idioma)`
     ,datos)
 }
