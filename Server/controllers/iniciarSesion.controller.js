@@ -38,6 +38,7 @@ function iniciarSesion(datos) {
                                                     } else {
                                                         let datosUst = result.result[0];
                                                         console.log("prueba",datosUst);
+                                                        datosUst.idUsuario = datosUst.idusuarios;
                                                         resolve({ ok: true, addenda: datosUst, token: service.createToken(datos) });
                                                     }
 

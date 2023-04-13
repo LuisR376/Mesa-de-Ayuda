@@ -8,8 +8,7 @@ const main = require('./Server/models/main.js');
 const api = require('./api')
 const path = require('path');
 //cabeceras de acceso de http
-
-const puerto = process.env.PORT;
+const puerto = 5013;
 app.set('port', (process.env.PORT || puerto))
 main.start()
 .then(function(){

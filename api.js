@@ -7,9 +7,8 @@ dotenv.config();
 
 api.use(cors());
 api.options('*',cors())
-api.use(bodyParser.urlencoded({extended:true}));
-api.use(bodyParser.json());
-
+api.use(bodyParser.json({ limit: '50mb' }));
+api.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 console.log("api")
 const usuario = require ('./Server/routes/usuario.js');
 api.use('/usuario',usuario)
@@ -36,6 +35,9 @@ api.use('/area',area)
 
 const licencias = require ('./Server/routes/licencias');
 api.use('/licencias',licencias)
+
+const folio = require ('./Server/routes/folio');
+api.use('/folio',folio)
 
 const rol = require ('./Server/routes/rol');
 api.use('/rol',rol)

@@ -3,6 +3,7 @@ const helpers = require('../modules/helpers');
 module.exports = {
     fnGetTicket: fnGetTicket,
     setTicket:setTicket,
+    catalogEstatusTicket : catalogEstatusTicket
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -25,7 +26,13 @@ function fnGetTicket(){
 function setTicket(datos) {
     console.log("Funcion existNomTicket",datos)
     return helpers.mysqlQuery('POST', conn_mysql,
-    `INSERT INTO ticket (idfolios,fecha_registro,idusuarios,idtipo_servicio,asunto,mensaje,foto1,foto2,foto3,foto4,solucion,firma,idstatusTicket)
-    VALUES (@idfolios,@fecha_registro,@idusuarios,@idtipo_servicio,@asunto,@mensaje,@foto1,@foto2,@foto3,@foto4,@solucion,@firma,@idstatusTicket)`
+    `INSERT INTO ticket (idfolios,fecha_registro,idusuarios,idtipo_servicio , idlugar, idarea,asunto,mensaje,foto1,foto2,foto3,foto4,idstatusTicket)
+    VALUES (@idfolios,now(),@idusuarios,@idtipo_servicio,@idlugar, @idarea,@asunto,@mensaje,@foto1,@foto2,@foto3,@foto4,1)`
     ,datos)
+}
+
+function catalogEstatusTicket(){
+    return helpers.mysqlQuery('GET', conn_mysql,
+    `select * from  statusticket`
+    )
 }

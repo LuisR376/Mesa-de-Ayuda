@@ -1,8 +1,12 @@
 'use strict'
+const { reject } = require('bluebird');
 const ticketModels = require ('../models/ticket.model');
+const tipoServicioModel = require ('../models/tipodeServicio.model');
+
 module.exports = {
     fnGetTicket: fnGetTicket,
-    setTicket:setTicket
+    setTicket:setTicket,
+    catalogEstatusTicket : catalogEstatusTicket
 }
 
 function fnGetTicket(){
@@ -18,13 +22,48 @@ function fnGetTicket(){
 }
 function setTicket(datos){
     return new Promise(function (resolve) {
+       fnGetTipodeServicioDefault().then(function(result){
+        console.log("obten datos tipos de servicio default", result.addenda[0].idtipo_servicio)
+        datos.idtipo_servicio = result.addenda[0].idtipo_servicio;
         ticketModels.setTicket(datos)
+        .then(function (result) {
+            console.log("👀",result)
+            if (!result.err) {
+                resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
+            
+            }
+        });
+       });
+        
+    });
+}
+
+
+function fnGetTipodeServicioDefault(){
+    return new Promise(function (resolve) {
+        tipoServicioModel.fnGetTipodeServicioDefault()
             .then(function (result) {
                 console.log("👀",result)
                 if (!result.err) {
-                    resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
+                    resolve({ ok: false, mensaje: 'Se agrego Correctamente' ,addenda:result.result});
                 
                 }
             });
     });
+}
+
+
+
+function catalogEstatusTicket(){
+    return new Promise(function (resolve){
+        ticketModels.catalogEstatusTicket()
+        .then(function(result){
+            if (!result.err) {
+                resolve({ ok: false, mensaje: 'Catalogo de estatus ticket' ,  addenda:result.result});
+            
+            }else{
+                reject({ ok : false , mensaje : "error al obtener catalogos"});
+            }
+        })
+    })
 }
