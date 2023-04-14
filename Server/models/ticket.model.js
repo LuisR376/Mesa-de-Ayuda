@@ -30,7 +30,7 @@ function setTicket(datos) {
     VALUES (@idfolios,now(),@idusuarios,@idtipo_servicio,@idlugar, @idarea,@asunto,@mensaje,@foto1,@foto2,@foto3,@foto4,1)`
     ,datos)
 }
-
+//call setTickets(@idfolios,@fecha_registro,@idusuarios,@idtipo_servicio,@asunto,@mensaje,@foto1,@foto2,@foto3,@foto4,@solucion,@firma,@estado_ticket,@idlugar,@idarea)
 function catalogEstatusTicket(){
     return helpers.mysqlQuery('GET', conn_mysql,
     `select * from  statusticket`

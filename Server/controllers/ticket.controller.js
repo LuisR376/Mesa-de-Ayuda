@@ -30,7 +30,6 @@ function setTicket(datos){
             console.log("👀",result)
             if (!result.err) {
                 resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
-            
             }
         });
        });
