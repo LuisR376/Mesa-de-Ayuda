@@ -3,7 +3,8 @@ const helpers = require('../modules/helpers');
 module.exports = {
     fnGetTicket: fnGetTicket,
     setTicket:setTicket,
-    catalogEstatusTicket : catalogEstatusTicket
+    catalogEstatusTicket : catalogEstatusTicket,
+    fnGetTicketByid : fnGetTicketByid
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -34,5 +35,21 @@ function setTicket(datos) {
 function catalogEstatusTicket(){
     return helpers.mysqlQuery('GET', conn_mysql,
     `select * from  statusticket`
+    )
+}
+function fnGetTicketByid(idFolios){
+    console.log("model",idFolios);
+    return helpers.mysqlQuery('GET', conn_mysql,
+    `SELECT t.*, u.nombre,f.num_folio,tip.descripcion, sta.Descripcion as estado_ticket,areas.nombre_area, lugares.ubicacion FROM 
+    ticket t,
+    usuarios u,
+    folios f,
+    tipo_servicio tip,
+    statusticket sta,
+    area areas,
+    lugar lugares
+     WHERE 
+     t.idusuarios = u.idusuarios and  t.idfolios = f.idfolios and t.idtipo_servicio = tip.idtipo_servicio and
+     t.idstatusTicket = sta.idstatusTicket and t.idarea = areas.idarea and t.idlugar = lugares.idlugar and  t.idfolios = @idFolios`, idFolios
     )
 }

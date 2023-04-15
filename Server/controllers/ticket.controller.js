@@ -6,7 +6,18 @@ const tipoServicioModel = require ('../models/tipodeServicio.model');
 module.exports = {
     fnGetTicket: fnGetTicket,
     setTicket:setTicket,
-    catalogEstatusTicket : catalogEstatusTicket
+    catalogEstatusTicket : catalogEstatusTicket,
+    fnGetTicketByid : fnGetTicketByid
+}
+function fnGetTicketByid(idFolios){
+    console.log("ver",idFolios);
+    return new Promise (function(resolve,reject){
+        ticketModels.fnGetTicketByid(idFolios)
+        .then(function(result){
+            console.log("resultado  get id ", result)
+            resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar Ticket'}))
+        })
+    })
 }
 
 function fnGetTicket(){
