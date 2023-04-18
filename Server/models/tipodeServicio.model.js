@@ -15,7 +15,7 @@ function fnGetTipodeServicio(){
 }
 function setTipodeServicio(datos) {
     return helpers.mysqlQuery('POST', conn_mysql,
-    `INSERT INTO tipo_servicio (Descripcion,Modalidad)VALUES(@Descripcion,@Modalidad)`
+    `INSERT INTO tipo_servicio (Descripcion)VALUES(@Descripcion)`
     ,datos)
 }
 
@@ -23,6 +23,7 @@ function setTipodeServicio(datos) {
 function fnGetTipodeServicioDefault(){
     
     return helpers.mysqlQuery('GET',conn_mysql,
-    `SELECT * FROM tipo_servicio where modalidad = 'Default'`
+    `SELECT * FROM tipo_servicio`
     )
 }
+//`SELECT * FROM tipo_servicio where modalidad = 'Default'`
