@@ -40,16 +40,17 @@ function catalogEstatusTicket(){
 function fnGetTicketByid(idFolios){
     console.log("model",idFolios);
     return helpers.mysqlQuery('GET', conn_mysql,
-    `SELECT t.*, u.nombre,f.num_folio,tip.descripcion, sta.Descripcion as estado_ticket,areas.nombre_area, lugares.ubicacion FROM 
+    `SELECT t.*, u.nombre,asi.descripcion as nombre_asignacion,f.num_folio,tip.descripcion, sta.Descripcion as estado_ticket,areas.nombre_area, lugares.ubicacion FROM 
     ticket t,
     usuarios u,
     folios f,
     tipo_servicio tip,
     statusticket sta,
     area areas,
-    lugar lugares
+    lugar lugares,
+    asignacion asi
      WHERE 
-     t.idusuarios = u.idusuarios and  t.idfolios = f.idfolios and t.idtipo_servicio = tip.idtipo_servicio and
-     t.idstatusTicket = sta.idstatusTicket and t.idarea = areas.idarea and t.idlugar = lugares.idlugar and  t.idfolios = @idFolios`, idFolios
+     t.idusuarios = u.idusuarios and t.idasignacion = asi.idasignacion and  t.idfolios = f.idfolios and t.idtipo_servicio = tip.idtipo_servicio and
+     t.idstatusTicket = sta.idstatusTicket and t.idarea = areas.idarea and t.idlugar = lugares.idlugar and t.idfolios = @idFolios`, idFolios
     )
 }
