@@ -2,6 +2,7 @@
 const helpers = require('../modules/helpers');
 module.exports = {
     fnGetUsuario: fnGetUsuario,
+    fnGetTecnicos:fnGetTecnicos,
     setUsuario:setUsuario,
     existNomUsuario:existNomUsuario,
     findByIdAndUpdate:findByIdAndUpdate,
@@ -11,7 +12,9 @@ console.log("funcion model")
 function fnGetUsuario(){
     return helpers.mysqlQuery('GET',conn_mysql,`SELECT * FROM usuarios`)
 }
-
+function fnGetTecnicos(){
+    return helpers.mysqlQuery('GET',conn_mysql,`SELECT idusuarios, nombre FROM usuarios WHERE idrol = 2;`)
+}
 function setUsuario(datos) {
     return helpers.mysqlQuery('GET', conn_mysql,
     `SELECT u.*, a.nombre_area, l.ubicacion, r.descripcion_rol FROM 

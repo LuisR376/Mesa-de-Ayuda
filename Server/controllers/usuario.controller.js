@@ -4,7 +4,8 @@ const usuarioModels = require ('../models/usuario.model');
 module.exports = {
     fnGetUsuario: fnGetUsuario,
     setUsuario:setUsuario,
-    actualizarUsuario:actualizarUsuario
+    actualizarUsuario: actualizarUsuario,
+    fnGetTecnicos:fnGetTecnicos
 }
 
 function fnGetUsuario(){
@@ -15,6 +16,17 @@ function fnGetUsuario(){
         .then(function(result){
             console.log("resultado del paso 2", result)
             resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar usuario'}))
+        })
+    })
+}
+function fnGetTecnicos(){
+    //
+    //Una promesa dice: que debe esperar a terminar la funcion para iniciar el siguiente paso
+    return new Promise (function(resolve,reject){
+        usuarioModels.fnGetTecnicos()
+        .then(function(result){
+            console.log("resultado fnGetTecnicos", result)
+            resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar tecnicos'}))
         })
     })
 }

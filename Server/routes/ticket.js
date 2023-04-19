@@ -7,6 +7,7 @@ router.get('/getticket',fnGetTicket);
 router.get('/getticketByid/:id',fnGetTicketByid);
 
 router.post('/post', setTicket);
+router.post('/actualizar/:id', setTicketActualizado);
 router.get('/obtenCatalogEstatusTicket', catalogEstatusTicket);
 /********************************************************************************************* */
 
@@ -42,5 +43,15 @@ function fnGetTicketByid(req, res){
         res.json(result);
     });
 }
+
+function setTicketActualizado(req, res){
+    let idFolios = req.params.id
+    console.log("id folios actualizacion", idFolios);
+        ticketCrtl.setTicketActualizado({idFolios})
+        .then(function(result){
+        res.json(result);
+    });
+}
+
 
 module.exports = router;

@@ -7,7 +7,8 @@ module.exports = {
     fnGetTicket: fnGetTicket,
     setTicket:setTicket,
     catalogEstatusTicket : catalogEstatusTicket,
-    fnGetTicketByid : fnGetTicketByid
+    fnGetTicketByid: fnGetTicketByid,
+    setTicketActualizado:setTicketActualizado
 }
 function fnGetTicketByid(idFolios){
     console.log("ver",idFolios);
@@ -61,7 +62,22 @@ function fnGetTipodeServicioDefault(){
             });
     });
 }
-
+function setTicketActualizado(idFolios) {
+  return new Promise(function (resolve, reject) {
+    ticketModels.setTicketActualizado(idFolios)
+      .then(function (result) {
+        console.log("funcion setTicketActualizado controller", result);
+        if (!result.err) {
+          resolve({ ok: true, mensaje: 'Se actualizó correctamente', addenda: result.result });
+        } else {
+          reject({ ok: false, mensaje: 'Hubo un error al actualizar', addenda: result.result });
+        }
+      })
+      .catch(function (err) {
+        reject({ ok: false, mensaje: 'Hubo un error al actualizar', addenda: err });
+      });
+  });
+}
 
 
 function catalogEstatusTicket(){
