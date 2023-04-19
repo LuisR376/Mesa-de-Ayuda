@@ -44,13 +44,12 @@ function fnGetTicketByid(req, res){
     });
 }
 
-function setTicketActualizado(req, res){
-    let idFolios = req.params.id
-    console.log("id folios actualizacion", idFolios);
-        ticketCrtl.setTicketActualizado({idFolios})
-        .then(function(result){
-        res.json(result);
-    });
+function setTicketActualizado(req, res) {
+    let datos = req.body;
+    ticketCrtl.setTicketActualizado(datos)
+        .then(function (result) {
+            res.json(result);
+        });
 }
 
 

@@ -62,22 +62,23 @@ function fnGetTipodeServicioDefault(){
             });
     });
 }
-function setTicketActualizado(idFolios) {
-  return new Promise(function (resolve, reject) {
-    ticketModels.setTicketActualizado(idFolios)
+function setTicketActualizado(idFolios, datos) {
+    console.log("ver",idFolios);
+  return new Promise(function (resolve) {
+    ticketModels.setTicketActualizado(idFolios, datos)
       .then(function (result) {
         console.log("funcion setTicketActualizado controller", result);
         if (!result.err) {
-          resolve({ ok: true, mensaje: 'Se actualizó correctamente', addenda: result.result });
+          datos = result.result; // aquí guardamos el resultado de la actualización en el parámetro 'datos'
+          resolve({ ok: true, mensaje: 'Se actualizó correctamente', addenda: datos });
         } else {
-          reject({ ok: false, mensaje: 'Hubo un error al actualizar', addenda: result.result });
+          resolve({ ok: false, mensaje: 'No se pudo actualizar', addenda: null });
         }
-      })
-      .catch(function (err) {
-        reject({ ok: false, mensaje: 'Hubo un error al actualizar', addenda: err });
       });
   });
 }
+
+
 
 
 function catalogEstatusTicket(){

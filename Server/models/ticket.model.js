@@ -38,12 +38,19 @@ function catalogEstatusTicket(){
     `select * from  statusticket`
     )
 }
-function setTicketActualizado(idfolios) {
-    console.log("Funcion model",idfolios)
+function setTicketActualizado(datos,idfolios) {
+    console.log("Funcion setTicketActualizado")
     return helpers.mysqlQuery('POST', conn_mysql,
-        ` UPDATE ticket, folios SET ticket.idasignacion = @idasignacion, ticket.idusuarios = @idusuarios,ticket.idtipo_servicio  = @idtipo_servicio,ticket.idlugar = @idlugar,ticket.idarea = @ididarea,ticket.asunto = @asunto,ticket.mensaje = @mensaje,ticket.foto1 = @foto1,ticket.foto2 = @foto2,ticket.foto3 = @foto3,ticket.foto4= @foto4 
-    WHERE ticket.idfolios = folios.idfolios AND ticket.idfolios = @idfolios;`, idfolios
-    )
+    ` UPDATE ticket, folios SET ticket.idasignacion 	= @idasignacion,
+ticket.idusuarios       = @idusuarios,
+ticket.idtipo_servicio  = @idtipo_servicio,
+ticket.asunto           = @asunto,
+ticket.mensaje          = @mensaje,
+ticket.foto1            = @foto1,
+ticket.foto2            = @foto2,
+ticket.foto3            = @foto3,
+ticket.foto4            = @foto4
+ WHERE ticket.idfolios = folios.idfolios AND ticket.idfolios = @idfolios;`, datos, idfolios);
 }
 function fnGetTicketByid(idFolios){
     console.log("model",idFolios);
