@@ -13,7 +13,7 @@ function fnGetUsuario(){
     return helpers.mysqlQuery('GET',conn_mysql,`SELECT * FROM usuarios`)
 }
 function fnGetTecnicos(){
-    return helpers.mysqlQuery('GET',conn_mysql,`SELECT idusuarios, nombre FROM usuarios WHERE idrol = 2;`)
+    return helpers.mysqlQuery('GET',conn_mysql,`SELECT idusuarios, nombre, num_empleado FROM usuarios WHERE idrol = 2;`)
 }
 function setUsuario(datos) {
     return helpers.mysqlQuery('GET', conn_mysql,
