@@ -8,6 +8,8 @@ router.get('/getticketByid/:id',fnGetTicketByid);
 
 router.post('/post', setTicket);
 router.post('/actualizar/:id', setTicketActualizado);
+router.post('/actualizarAbierto/:id', setTicketAbierto);
+
 router.get('/obtenCatalogEstatusTicket', catalogEstatusTicket);
 /********************************************************************************************* */
 
@@ -47,6 +49,13 @@ function fnGetTicketByid(req, res){
 function setTicketActualizado(req, res) {
     let datos = req.body;
     ticketCrtl.setTicketActualizado(datos)
+        .then(function (result) {
+            res.json(result);
+        });
+}
+function setTicketAbierto(req, res) {
+    let datos = req.body;
+    ticketCrtl.setTicketAbierto(datos)
         .then(function (result) {
             res.json(result);
         });
