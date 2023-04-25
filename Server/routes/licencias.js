@@ -5,6 +5,7 @@ const licenciasCrtl = require ('../controllers/licencias.controller');
 /***************************RUTAS BASE GET,GETBYID,UPDATE,SET********************************** */
 router.get('/get',fnGetLicencias);
 router.post('/post', setLicencias);
+router.post('/updatelicencias', upLicencias);
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -25,4 +26,11 @@ function setLicencias(req, res) {
         });
 }
 
+function upLicencias(req, res) {
+    let datos = req.body;
+    licenciasCrtl.upLicencias(datos)
+        .then(function (result) {
+            res.json(result);
+        });
+}
 module.exports = router;

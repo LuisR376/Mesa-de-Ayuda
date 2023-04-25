@@ -2,7 +2,8 @@
 const licenciasModels = require ('../models/licencias.model');
 module.exports = {
     fnGetLicencias: fnGetLicencias,
-    setLicencias: setLicencias
+    setLicencias: setLicencias,
+    upLicencias:upLicencias
 }
 
 function fnGetLicencias(){
@@ -12,7 +13,7 @@ function fnGetLicencias(){
         licenciasModels.fnGetLicencias()
         .then(function(result){
             console.log("resultado del paso 2", result)
-            resolve(!result.err ? {ok:true, usuario:result.result}: reject({ok:false, error:'Error al consultar licencias'}))
+            resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar licencias'}))
         })
     })
 }
@@ -27,6 +28,17 @@ function setLicencias(datos){
                 } else {
                     resolve({ ok: true, Error: result.result[0] });
                 }
+            });
+    });
+}
+function upLicencias(datos){
+    return new Promise(function (resolve, reject) {
+        licenciasModels.updateLicen(datos)
+            .then(function (result) {
+                resolve({ ok: true, Error: result.result });
+            })
+            .catch(function(error) {
+                reject({ ok: false, error: error });
             });
     });
 }
