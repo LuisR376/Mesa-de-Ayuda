@@ -27,6 +27,6 @@ function existNomLicen(datos) {
 }
 function updateLicen(datos){
     return helpers.mysqlQuery('POST',conn_mysql,
-    `UPDATE licencias SET numserie_licencia = @numserie_licencia,tipo_licencia = @tipo_licencia,nombre = @nombre,folio_compra = @folio_compra, formato = @formato, descripcion = @descripcion AND idLicencias  = @idLicencias;`,datos
+    `UPDATE licencias SET numserie_licencia = @numserie_licencia,tipo_licencia = @tipo_licencia,nombre = @nombre,folio_compra = @folio_compra, formato = @formato, descripcion = @descripcion WHERE idLicencias  = @idLicencias;`,datos
     )
 }
