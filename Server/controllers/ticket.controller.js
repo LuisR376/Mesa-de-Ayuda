@@ -10,7 +10,8 @@ module.exports = {
     catalogEstatusTicket : catalogEstatusTicket,
     fnGetTicketByid: fnGetTicketByid,
     setTicketActualizado: setTicketActualizado,
-    setTicketAbierto: setTicketAbierto
+  setTicketAbierto: setTicketAbierto,
+    setTicketsolved:setTicketsolved
 }
 function fnGetTicketByid(idFolios){
     
@@ -107,4 +108,18 @@ function catalogEstatusTicket(){
             }
         })
     })
+}
+function setTicketsolved(datos) {
+  return new Promise(function (resolve, reject) {
+   console.log("CONTROLADOR",datos);
+    ticketModels.setTicketsolved(datos)
+      .then(function (result) {
+        if (!result.err) {
+          resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
+        }
+      })
+      .catch(function (error) {
+        reject(error);
+      });
+  });
 }
