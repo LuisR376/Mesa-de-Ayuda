@@ -27,7 +27,7 @@ function fnGetTicket(){
     )
 }
 function setTicket(datos) {
-    console.log("Funcion existNomTicket",datos)
+   
     return helpers.mysqlQuery('POST', conn_mysql,
     `INSERT INTO ticket (idfolios,fecha_registro,idusuarios,idtipo_servicio , idlugar, idarea,asunto,mensaje,foto1,foto2,foto3,foto4,idstatusTicket)
     VALUES (@idfolios,now(),@idusuarios,@idtipo_servicio,@idlugar, @idarea,@asunto,@mensaje,@foto1,@foto2,@foto3,@foto4,1)`
@@ -40,17 +40,16 @@ function catalogEstatusTicket(){
     )
 }
 function setTicketActualizado(datos,idfolios) {
-    console.log("Funcion setTicketActualizado")
+    
     return helpers.mysqlQuery('POST', conn_mysql,
     ` UPDATE ticket, folios SET ticket.numEmpl_Tecnicos = @numEmpl_Tecnicos, ticket.idtipo_servicio = @idtipo_servicio, ticket.idstatusticket = 2 WHERE ticket.idfolios = folios.idfolios AND ticket.idfolios = @idfolios;`, datos, idfolios);
 }
-function setTicketAbierto(datos,idfolios) {
-    console.log("Funcion setTicketAbierto")
+function setTicketAbierto(datos) {
     return helpers.mysqlQuery('POST', conn_mysql,
-    ` UPDATE ticket, folios SET ticket.solucion = @solucion, ticket.firma = @firma, ticket.idstatusticket = 3 WHERE ticket.idfolios = folios.idfolios AND ticket.idfolios = @idfolios;`, datos, idfolios);
+    ` UPDATE ticket SET idstatusticket = @idstatusticket WHERE idticket = @ticket;`, datos);
 }
 function fnGetTicketByid(idFolios){
-    console.log("model",idFolios);
+   
     return helpers.mysqlQuery('GET', conn_mysql,
     `SELECT t.*, u.nombre,f.num_folio,tip.descripcion, sta.Descripcion as estado_ticket,areas.nombre_area, lugares.ubicacion FROM 
     ticket t,

@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const tipodeServicioCtrl = require ('../controllers/tipodeServicio.controller');
 /***************************RUTAS BASE GET,GETBYID,UPDATE,SET********************************** */
-router.get('/get',fnGetTipodeServicio);
+router.get('/servicio',fnGetTipodeServicio);
+router.get('/servicioadicional',fnGetservicextra);
 router.post('/post', setTipodeServicio);
 /********************************************************************************************* */
 
@@ -12,6 +13,12 @@ router.post('/post', setTipodeServicio);
 
 function fnGetTipodeServicio(req,res){
     tipodeServicioCtrl.fnGetTipodeServicio()
+    .then(function (result){
+        res.json(result);
+    })
+}
+function fnGetservicextra(req,res){
+    tipodeServicioCtrl.fnGetservicextra()
     .then(function (result){
         res.json(result);
     })

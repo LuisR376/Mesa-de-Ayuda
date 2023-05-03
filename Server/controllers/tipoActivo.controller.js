@@ -10,7 +10,7 @@ function fnGetTipoActivos(){
     return new Promise (function(resolve,reject){
         activostipoModels.fnGetTipoActivos()
         .then(function(result){
-            console.log("resultado del paso 2", result)
+            
             resolve(!result.err ? {ok:true, activos:result.result}: reject({ok:false, error:'Error al consultar Tipo de Activos'}))
         })
     })
@@ -20,7 +20,7 @@ function setActivos(datos){
     return new Promise(function (resolve) {
         activostipoModels.existNomActivo(datos)
             .then(function (result) {
-                console.log("👀",result.result[1])
+                
                 if (result.result[1]) {
                     resolve({ ok: false, error: 'Ya Existe' });
                 } else {

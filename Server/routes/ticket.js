@@ -5,10 +5,9 @@ const ticketCrtl = require ('../controllers/ticket.controller');
 /***************************RUTAS BASE GET,GETBYID,UPDATE,SET********************************** */
 router.get('/getticket',fnGetTicket);
 router.get('/getticketByid/:id',fnGetTicketByid);
-
 router.post('/post', setTicket);
 router.post('/actualizar/:id', setTicketActualizado);
-router.post('/actualizarAbierto/:id', setTicketAbierto);
+router.post('/actualizarAbierto', setTicketAbierto);
 
 router.get('/obtenCatalogEstatusTicket', catalogEstatusTicket);
 /********************************************************************************************* */
@@ -39,7 +38,7 @@ function catalogEstatusTicket(req, res){
 }
 function fnGetTicketByid(req, res){
     let idFolios = req.params.id
-    console.log("id folios", idFolios);
+    
         ticketCrtl.fnGetTicketByid({idFolios})
         .then(function(result){
         res.json(result);
@@ -55,6 +54,7 @@ function setTicketActualizado(req, res) {
 }
 function setTicketAbierto(req, res) {
     let datos = req.body;
+console.log("ABIERTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",datos);
     ticketCrtl.setTicketAbierto(datos)
         .then(function (result) {
             res.json(result);

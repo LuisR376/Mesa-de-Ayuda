@@ -47,7 +47,6 @@ router.put('/usuarios/:id', (req, res) => {
   
     usuarioCtrl.actualizarUsuario(id, datosActualizados)
       .then(resultado => {
-        console.log("Pasooooooo1 Resultado",resultado);
         res.status(200).json(resultado);
       })
       .catch(error => {

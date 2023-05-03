@@ -14,13 +14,13 @@ function fnGetLugar(){
     )
 }
 function setLugar(datos) {
-    console.log("Funcion existNomLicen",datos)
+   
     return helpers.mysqlQuery('GET', conn_mysql,
     `SELECT * FROM lugar`
     ,datos)
 }
 function existNomLugar(datos) {
-    console.log("Funcion existNomLicen",datos)
+    
     return helpers.mysqlQuery('GET', conn_mysql,
     `call setLugar(@ubicacion)`
     ,datos)

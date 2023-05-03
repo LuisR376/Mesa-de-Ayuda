@@ -11,7 +11,7 @@ function fnGetdiscoDuro(){
     return new Promise (function(resolve,reject){
         ddModels.fnGetdiscoDuro()
         .then(function(result){
-            console.log("resultado disco duro", result)
+            
             resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar Disco Duro'}))
         })
     })
@@ -20,7 +20,7 @@ function setDiscod(datos){
     return new Promise(function (resolve) {
         ddModels.existDd(datos)
             .then(function (result) {
-                console.log("👀 Dd",result.result[1])
+                
                 if (result.result[1]) {
                     resolve({ ok: false, error: 'Ya Existe' });
                 } else {

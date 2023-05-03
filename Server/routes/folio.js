@@ -10,7 +10,7 @@ router.get('/setFolio',fnSetFolio);
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
 
 function fnSetFolio(req, res) {
-    console.log("***************************FOLIO");
+   
     FolioCtrl.fnSetFolio()
         .then(function (result) {
             res.json(result);

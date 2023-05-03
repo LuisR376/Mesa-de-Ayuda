@@ -7,7 +7,7 @@ module.exports = {
     existNomUsuario:existNomUsuario,
     findByIdAndUpdate:findByIdAndUpdate,
     }
-console.log("funcion model")
+
 //crear una funcion de get usuarios que ara una peticion a la bd
 function fnGetUsuario(){
     return helpers.mysqlQuery('GET',conn_mysql,`SELECT * FROM usuarios`)
@@ -29,7 +29,7 @@ function setUsuario(datos) {
     ,datos)
 }
 function existNomUsuario(datos) {
-    console.log("Funcion existNomtipoActivos",datos)
+   
     return helpers.mysqlQuery('GET', conn_mysql,
     `call setUsuarios(@idrol,@num_empleado,@nombre,@apellidoP,@apellidoM,@idlugar,@idarea,@email,@password,@status)`
     ,datos)
@@ -37,12 +37,10 @@ function existNomUsuario(datos) {
 function findByIdAndUpdate(id, datos) {
     // Código para actualizar un usuario por su ID 
     const query = 'UPDATE `usuarios` SET `fecha`        = ?, `idrol`        = ?, `num_empleado` = ?, `nombre`       = ?, `apellidoP`    =?, `apellidoM`    =?, `idlugar`      =?, `idarea`       =?, `email`        =?, `password`     =?, `status`       =?  WHERE `id` =?'
-    // Ejemplo con console.log
-    
-    console.log(`Actualizando usuario con ID ${id}:`);
+
     return helpers.mysqlQuery('PUT', conn_mysql, query)
     .then((resultado) => {
-      console.log(`Usuario actualizado con éxito: ${resultado}`);
+     
       return resultado;
     })
   }

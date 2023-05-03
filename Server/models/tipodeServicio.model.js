@@ -3,6 +3,7 @@ const helpers = require('../modules/helpers');
 module.exports = {
     fnGetTipodeServicio: fnGetTipodeServicio,
     setTipodeServicio:setTipodeServicio,
+    fnGetservicextra:fnGetservicextra,
     fnGetTipodeServicioDefault : fnGetTipodeServicioDefault
 }
 //
@@ -11,6 +12,12 @@ function fnGetTipodeServicio(){
     
     return helpers.mysqlQuery('GET',conn_mysql,
     `SELECT * FROM tipo_servicio`
+    )
+}
+function fnGetservicextra(){
+    
+    return helpers.mysqlQuery('GET',conn_mysql,
+    `SELECT * FROM tipo_servicio WHERE Servicio_adicional = 1;`
     )
 }
 function setTipodeServicio(datos) {
@@ -23,7 +30,7 @@ function setTipodeServicio(datos) {
 function fnGetTipodeServicioDefault(){
     
     return helpers.mysqlQuery('GET',conn_mysql,
-    `SELECT * FROM tipo_servicio`
+    `SELECT * FROM tipo_servicio where modalidad = 'Default`
     )
 }
 //`SELECT * FROM tipo_servicio where modalidad = 'Default'`

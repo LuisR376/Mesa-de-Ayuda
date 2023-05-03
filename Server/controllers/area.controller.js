@@ -22,11 +22,11 @@ function fnGetArea(){
     });
 }
 function fnagregaArea(datos){
-    console.log("fnagregaArea",datos);
+    
     return new Promise(function (resolve) {
         AreaModels.existNomArea(datos)
             .then(function (result) {
-                console.log("👀",result.result[1])
+                
                 if (result.result[1]) {
                     resolve({ ok: false, error: 'Ya Existe' });
                 } else {

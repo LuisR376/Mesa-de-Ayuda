@@ -14,13 +14,13 @@ function fnGetServicios(){
     )
 }
 function setServicios(datos) {
-    console.log("Funcion existNomLicen",datos)
+  
     return helpers.mysqlQuery('GET', conn_mysql,
     `SELECT * FROM servicios`
     ,datos)
 }
 function existNomServicios(datos) {
-    console.log("Funcion existNomLicen",datos)
+    
     return helpers.mysqlQuery('GET', conn_mysql,
     `INSERT INTO servicios (idservicios,fecha_pedido,fecha_termino,idfolios,idtipo_servicio,descripcion,observaciones,idactivos,idlugar)
     VALUES (@idservicios,@fecha_pedido,@fecha_termino,@idfolios,@idtipo_servicio,@descripcion,@observaciones,@idactivos,@idlugar)`

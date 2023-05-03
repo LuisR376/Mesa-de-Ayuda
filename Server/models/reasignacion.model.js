@@ -14,13 +14,13 @@ function fnGetreasignacion(){
     )
 }
 function setreasignacion(datos) {
-    console.log("Funcion setreasignacion",datos)
+    
     return helpers.mysqlQuery('GET', conn_mysql,
     `SELECT * FROM asignacion`
     ,datos)
 }
 function existidreasignacion(datos) {
-    console.log("Funcion existidreasignacion",datos)
+   
     return helpers.mysqlQuery('GET', conn_mysql,
     `INSERT INTO asignacion ('',@descripcion,@idusuarios)VALUES(descripcion,idusuarios)`
     ,datos)

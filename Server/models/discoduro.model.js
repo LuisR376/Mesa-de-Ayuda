@@ -14,13 +14,13 @@ function fnGetdiscoDuro(){
     )
 }
 function setDiscod(datos) {
-    console.log("Funcion setDiscod",datos)
+    
     return helpers.mysqlQuery('GET', conn_mysql,
     `SELECT * FROM discoduro`
     ,datos)
 }
 function existDd(datos) {
-    console.log("Funcion existDd",datos)
+    
     return helpers.mysqlQuery('GET', conn_mysql,
     `call setLugar(@ubicacion)`
     ,datos)

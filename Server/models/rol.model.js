@@ -15,13 +15,13 @@ function fnGetRol(){
     )
 }
 function setRol(datos) {
-    console.log("Funcion setRol",datos)
+  
     return helpers.mysqlQuery('GET', conn_mysql,
     `SELECT * FROM rol`
     ,datos)
 }
 function existNomRol(datos) {
-    console.log("Funcion existNomRol",datos)
+   
     return helpers.mysqlQuery('GET', conn_mysql,
     `call setRol(@descripcion_rol)`
     ,datos)

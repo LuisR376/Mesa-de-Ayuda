@@ -14,7 +14,7 @@ function fnGetUsuario(){
     return new Promise (function(resolve,reject){
         usuarioModels.fnGetUsuario()
         .then(function(result){
-            console.log("resultado del paso 2", result)
+            
             resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar usuario'}))
         })
     })
@@ -25,7 +25,7 @@ function fnGetTecnicos(){
     return new Promise (function(resolve,reject){
         usuarioModels.fnGetTecnicos()
         .then(function(result){
-            console.log("resultado fnGetTecnicos", result)
+           
             resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar tecnicos'}))
         })
     })
@@ -34,7 +34,7 @@ function setUsuario(datos){
     return new Promise(function (resolve) {
         usuarioModels.existNomUsuario(datos)
             .then(function (result) {
-                console.log("😎", result);
+                
                 if (result.result[1]) {
                     resolve({ ok: false, error: 'Ya Existe' });
                 } else {
@@ -50,7 +50,7 @@ function actualizarUsuario(datos) {
     return new Promise((resolve, reject) => {
         usuarioModels.findByIdAndUpdate(id, datosActualizados, { new: true })
         .then((usuarioActualizado) => {
-            console.log("Pasoooooo2 Usuario Actualizado", usuarioActualizado);
+            
           resolve(usuarioActualizado);
         })
         .catch((error) => {

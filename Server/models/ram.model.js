@@ -15,13 +15,13 @@ function fnGetRam(){
     )
 }
 function setRam(datos) {
-    console.log("Funcion setRam",datos)
+   
     return helpers.mysqlQuery('GET', conn_mysql,
     `SELECT * FROM ram`
     ,datos)
 }
 function existNomRam(datos) {
-    console.log("Funcion existNomRam",datos)
+    
     return helpers.mysqlQuery('GET', conn_mysql,
     `call setRol(@descripcion_rol)`
     ,datos)

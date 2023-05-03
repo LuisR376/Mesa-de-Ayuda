@@ -3,7 +3,7 @@ var mysql = require('mysql');
 conn_mysql = null;
 
 var fs = require('fs');
-console.log("main")
+
 var mysql_cred = JSON.parse(fs.readFileSync(__dirname + '/cred_mysql', 'utf8'));
 
 

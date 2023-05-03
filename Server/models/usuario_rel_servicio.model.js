@@ -20,7 +20,7 @@ function fnSetRelacion(datos) {
     ,datos)
 }
 function existNomRelacion(datos) {
-    console.log("Funcion existNomRelacion",datos)
+   
     return helpers.mysqlQuery('GET', conn_mysql,
     `INSERT INTO usuarios_rel_servicios (@idusuarios,@idservicios)VALUES(idusuarios,idservicios)`
     ,datos)

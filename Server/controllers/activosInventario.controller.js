@@ -10,7 +10,7 @@ function fnGetActivos(){
     return new Promise (function(resolve,reject){
         activosModels.fnGetActivos()
         .then(function(result){
-            console.log("resultado del paso 2", result)
+            
             resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar activos'}))
         })
     })
@@ -19,7 +19,7 @@ function agregaActivos(datos){
     return new Promise(function (resolve) {
         activosModels.nomEquipo(datos)
             .then(function (result) {
-               // console.log("👀",result.result[1])
+              
                 if (result.result[1]) {
                     resolve({ ok: false, error: 'Ya Existe' });
                 } else {

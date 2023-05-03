@@ -19,7 +19,7 @@ function iniciarSesion(datos) {
                         let usuario = result.result;
                         
                         if (usuario.length > 0) {
-                            console.log("Usuario",usuario);
+                            
                             // status 1 activado 0 desactivado , 2 esperando verificacion
                             if (usuario[0].status == 1) {
 
@@ -28,16 +28,16 @@ function iniciarSesion(datos) {
                                     bcrypt.compare(datos.nip, usuario[0].password, function (err, res) {
                                         if (res == true) {
                                             let usuId = usuario[0].idusuarios; //Viene de la BD
-                                            console.log("hola",usuario[0]);
+                                            
                                             datos.id_usuario_sistema = usuId; //Objeto que viene desde la funcion
-                                            console.log(datos);
+                                            
                                             initSesionModels.ObtenerUsuarioId(datos)
                                                 .then(function (result) {
                                                     if (result.err) {
                                                         resolve({ ok: false, mensaje: 'Error en Login Consola' })
                                                     } else {
                                                         let datosUst = result.result[0];
-                                                        console.log("prueba",datosUst);
+                                                        
                                                         datosUst.idUsuario = datosUst.idusuarios;
                                                         resolve({ ok: true, addenda: datosUst, token: service.createToken(datos) });
                                                     }

@@ -19,7 +19,7 @@ function setActivos(datos) {
     ,datos)
 }
 function existNomActivo(datos) {
-    console.log("Funcion existNomtipoActivos",datos)
+    
     return helpers.mysqlQuery('GET', conn_mysql,
     `call setTipoActivo(@descripcion)`
     ,datos)
