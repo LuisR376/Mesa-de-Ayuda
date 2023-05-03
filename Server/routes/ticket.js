@@ -8,13 +8,10 @@ router.get('/getticketByid/:id',fnGetTicketByid);
 router.post('/post', setTicket);
 router.post('/actualizar/:id', setTicketActualizado);
 router.post('/actualizarAbierto', setTicketAbierto);
-
 router.get('/obtenCatalogEstatusTicket', catalogEstatusTicket);
 /********************************************************************************************* */
-
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
 //
-
 function fnGetTicket(req,res){
     ticketCrtl.fnGetTicket()
     .then(function (result){
@@ -28,8 +25,6 @@ function setTicket(req, res) {
             res.json(result);
         });
 }
-
-
 function catalogEstatusTicket(req, res){
     ticketCrtl.catalogEstatusTicket()
     .then(function(result){
@@ -44,7 +39,6 @@ function fnGetTicketByid(req, res){
         res.json(result);
     });
 }
-
 function setTicketActualizado(req, res) {
     let datos = req.body;
     ticketCrtl.setTicketActualizado(datos)
@@ -54,7 +48,7 @@ function setTicketActualizado(req, res) {
 }
 function setTicketAbierto(req, res) {
     let datos = req.body;
-console.log("ABIERTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",datos);
+
     ticketCrtl.setTicketAbierto(datos)
         .then(function (result) {
             res.json(result);

@@ -2,6 +2,7 @@
 const { reject } = require('bluebird');
 const ticketModels = require ('../models/ticket.model');
 const tipoServicioModel = require ('../models/tipodeServicio.model');
+const { log } = require('console');
 
 module.exports = {
     fnGetTicket: fnGetTicket,
@@ -79,21 +80,19 @@ function setTicketActualizado(idFolios, datos) {
   });
 }
 function setTicketAbierto(datos) {
-  return new Promise(function (resolve) {
+  return new Promise(function (resolve, reject) {
+   
     ticketModels.setTicketAbierto(datos)
       .then(function (result) {
-        console.log("setTicketAbierto",datos);
         if (!result.err) {
-          datos = result.result; // aquí guardamos el resultado de la actualización en el parámetro 'datos'
-          resolve({ ok: true, mensaje: 'Se actualizó correctamente', addenda: datos });
-        } else {
-          resolve({ ok: false, mensaje: 'No se pudo actualizar', addenda: null });
+          resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
         }
+      })
+      .catch(function (error) {
+        reject(error);
       });
   });
 }
-
-
 
 
 function catalogEstatusTicket(){

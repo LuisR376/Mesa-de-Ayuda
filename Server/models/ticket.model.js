@@ -45,8 +45,9 @@ function setTicketActualizado(datos,idfolios) {
     ` UPDATE ticket, folios SET ticket.numEmpl_Tecnicos = @numEmpl_Tecnicos, ticket.idtipo_servicio = @idtipo_servicio, ticket.idstatusticket = 2 WHERE ticket.idfolios = folios.idfolios AND ticket.idfolios = @idfolios;`, datos, idfolios);
 }
 function setTicketAbierto(datos) {
+  
     return helpers.mysqlQuery('POST', conn_mysql,
-    ` UPDATE ticket SET idstatusticket = @idstatusticket WHERE idticket = @ticket;`, datos);
+    ` UPDATE ticket SET idstatusticket = @idstatusticket WHERE idticket = @idticket;`, datos);
 }
 function fnGetTicketByid(idFolios){
    
