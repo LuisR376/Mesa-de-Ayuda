@@ -28,9 +28,7 @@ function setTipodeServicio(datos) {
 
 
 function fnGetTipodeServicioDefault(){
-    
     return helpers.mysqlQuery('GET',conn_mysql,
-    `SELECT * FROM tipo_servicio where modalidad = 'Default`
+    `SELECT * FROM tipo_servicio`
     )
 }
-//`SELECT * FROM tipo_servicio where modalidad = 'Default'`

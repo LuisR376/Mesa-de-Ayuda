@@ -28,10 +28,8 @@ function setTipodeServicio(datos){
     return new Promise(function (resolve) {
         tipodeServicioModels.setTipodeServicio(datos)
             .then(function (result) {
-                
                 if (!result.err) {
                     resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
-                
                 }
             });
     });
