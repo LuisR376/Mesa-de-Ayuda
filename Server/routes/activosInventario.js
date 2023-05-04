@@ -5,6 +5,7 @@ const activoCtrl = require ('../controllers/activosInventario.controller');
 /***************************RUTAS BASE GET,GETBYID,UPDATE,SET********************************** */
 router.get('/getActivos',fnGetActivos);
 router.post('/post',agregaActivos);
+router.get('/numInventario',fnactivosNumInventario);
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -12,6 +13,12 @@ router.post('/post',agregaActivos);
 
 function fnGetActivos(req,res){
     activoCtrl.fnGetActivos()
+    .then(function (result){
+        res.json(result);
+    })
+}
+function fnactivosNumInventario(req,res){
+    activoCtrl.fnactivosNumInventario()
     .then(function (result){
         res.json(result);
     })

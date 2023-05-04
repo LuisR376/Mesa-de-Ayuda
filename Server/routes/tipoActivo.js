@@ -5,6 +5,7 @@ const activotipoCtrl = require ('../controllers/tipoActivo.controller');
 /***************************RUTAS BASE GET,GETBYID,UPDATE,SET********************************** */
 router.get('/get',fnGetTipoActivos);
 router.post('/post', setActivos);
+
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -16,6 +17,7 @@ function fnGetTipoActivos(req,res){
         res.json(result);
     })
 }
+
 function setActivos(req, res) {
     let datos = req.body;
     activotipoCtrl.setActivos(datos)

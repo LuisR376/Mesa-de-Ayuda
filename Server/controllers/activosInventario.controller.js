@@ -2,7 +2,8 @@
 const activosModels = require ('../models/activosInventario.model');
 module.exports = {
     fnGetActivos: fnGetActivos,
-    agregaActivos : agregaActivos
+    agregaActivos : agregaActivos,
+    fnactivosNumInventario:fnactivosNumInventario
 }
 
 function fnGetActivos(){
@@ -12,6 +13,16 @@ function fnGetActivos(){
         .then(function(result){
             
             resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar activos'}))
+        })
+    })
+}
+function fnactivosNumInventario(){
+    //Una promesa dice: que debe esperar a terminar la funcion para iniciar el siguiente paso
+    return new Promise (function(resolve,reject){
+        activosModels.fnactivosNumInventario()
+        .then(function(result){
+            
+            resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar Tipo de Activos'}))
         })
     })
 }
