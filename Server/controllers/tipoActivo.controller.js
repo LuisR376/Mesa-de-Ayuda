@@ -2,7 +2,7 @@
 const activostipoModels = require ('../models/tipoActivos.model');
 module.exports = {
     fnGetTipoActivos: fnGetTipoActivos,
-    setActivos:setActivos
+    setActivos:setActivos,
 }
 
 function fnGetTipoActivos(){
@@ -15,6 +15,7 @@ function fnGetTipoActivos(){
         })
     })
 }
+
 
 function setActivos(datos){
     return new Promise(function (resolve) {

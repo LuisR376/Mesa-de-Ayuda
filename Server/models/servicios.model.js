@@ -10,7 +10,11 @@ module.exports = {
 function fnGetServicios(){
     
     return helpers.mysqlQuery('GET',conn_mysql,
-    `SELECT * FROM servicios`
+    `SELECT s.*, a.num_inventario FROM 
+    servicios s,
+    activos a
+     WHERE 
+     s.idactivos = a.idactivos;`
     )
 }
 function setServicios(datos) {

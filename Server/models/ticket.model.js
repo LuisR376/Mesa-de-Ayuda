@@ -6,7 +6,8 @@ module.exports = {
     catalogEstatusTicket : catalogEstatusTicket,
     fnGetTicketByid: fnGetTicketByid,
     setTicketActualizado: setTicketActualizado,
-    setTicketAbierto:setTicketAbierto
+    setTicketAbierto: setTicketAbierto,
+    setTicketsolved:setTicketsolved
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -64,4 +65,10 @@ function fnGetTicketByid(idFolios){
      t.idusuarios = u.idusuarios and  t.idfolios = f.idfolios and t.idtipo_servicio = tip.idtipo_servicio and
      t.idstatusTicket = sta.idstatusTicket and t.idarea = areas.idarea and t.idlugar = lugares.idlugar and t.idfolios = @idFolios`, idFolios
     )
+}
+
+
+function setTicketsolved(datos) {
+    return helpers.mysqlQuery('POST', conn_mysql,
+    ` UPDATE ticket SET idstatusticket = @idstatusticket, solucion = @solucion WHERE idticket = @idticket;`, datos);
 }

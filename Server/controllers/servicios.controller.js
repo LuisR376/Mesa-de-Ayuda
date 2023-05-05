@@ -11,7 +11,6 @@ function fnGetServicios(){
     return new Promise (function(resolve,reject){
         serviciosModels.fnGetServicios()
         .then(function(result){
-            
             resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar Servicios'}))
         })
     })

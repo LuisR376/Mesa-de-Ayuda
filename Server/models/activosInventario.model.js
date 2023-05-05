@@ -3,7 +3,8 @@ const helpers = require('../modules/helpers');
 module.exports = {
     fnGetActivos: fnGetActivos,
     agregaActivos : agregaActivos,
-    nomEquipo : nomEquipo
+    nomEquipo : nomEquipo,
+    fnactivosNumInventario:fnactivosNumInventario
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -16,6 +17,12 @@ function fnGetActivos(){
     tipoactivo t
      WHERE 
      a.iddetallepc = d.iddetallepc and a.idtipoactivo = t.idtipoactivo;`
+    )
+}
+function fnactivosNumInventario(){
+    
+    return helpers.mysqlQuery('GET',conn_mysql,
+    `SELECT idactivos, num_inventario FROM activos`
     )
 }
 function agregaActivos(datos) {
