@@ -7,7 +7,8 @@ module.exports = {
     fnGetTicketByid: fnGetTicketByid,
     setTicketActualizado: setTicketActualizado,
     setTicketAbierto: setTicketAbierto,
-    setTicketsolved:setTicketsolved
+    setTicketsolved:setTicketsolved,
+    updateEstatusTerminado : updateEstatusTerminado
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -72,3 +73,10 @@ function setTicketsolved(datos) {
     return helpers.mysqlQuery('POST', conn_mysql,
     ` UPDATE ticket SET idstatusticket = @idstatusticket, solucion = @solucion WHERE idticket = @idticket;`, datos);
 }
+
+
+function updateEstatusTerminado(datos) {
+    return helpers.mysqlQuery('POST', conn_mysql,
+    ` UPDATE ticket SET idstatusticket = @idstatusticket WHERE idticket = @idticket;`, datos);
+}
+

@@ -11,7 +11,8 @@ module.exports = {
     fnGetTicketByid: fnGetTicketByid,
     setTicketActualizado: setTicketActualizado,
   setTicketAbierto: setTicketAbierto,
-    setTicketsolved:setTicketsolved
+    setTicketsolved:setTicketsolved,
+    updateEstatusTerminado : updateEstatusTerminado
 }
 function fnGetTicketByid(idFolios){
     
@@ -35,21 +36,30 @@ function fnGetTicket(){
         })
     })
 }
-function setTicket(datos){
-    return new Promise(function (resolve) {
-       fnGetTipodeServicioDefault().then(function(result){
-        
-        datos.idtipo_servicio = result.addenda[0].idtipo_servicio;
-        ticketModels.setTicket(datos)
+function setTicket(datos) {
+  return new Promise(function (resolve) {
+    fnGetTipodeServicioDefault().then(function (result) {
+      datos.idtipo_servicio = result.addenda[0].idtipo_servicio;
+      ticketModels
+        .setTicket(datos)
         .then(function (result) {
-           
-            if (!result.err) {
-                resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
-            }
+          if (!result.err) {
+            resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
+          } else if (
+            result.err.errno === 1153 && // ER_NET_PACKET_TOO_LARGE
+            result.err.code === 'ER_NET_PACKET_TOO_LARGE'
+          ) {
+            resolve({
+              ok: false,
+              mensaje: 'El paquete enviado excede el límite de tamaño',
+            });
+          } else {
+            resolve({ ok: false, mensaje: result.err });
+          }
         });
-       });
-        
     });
+  });
+
 }
 
 
@@ -116,6 +126,22 @@ function setTicketsolved(datos) {
       .then(function (result) {
         if (!result.err) {
           resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
+        }
+      })
+      .catch(function (error) {
+        reject(error);
+      });
+  });
+}
+
+
+function updateEstatusTerminado(datos) {
+  return new Promise(function (resolve, reject) {
+   console.log("updateEstatusTerminado",datos);
+    ticketModels.updateEstatusTerminado(datos)
+      .then(function (result) {
+        if (!result.err) {
+          resolve({ ok: true, mensaje: 'El ticket a pasado a estatus terminado' });
         }
       })
       .catch(function (error) {

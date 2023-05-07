@@ -11,6 +11,7 @@ router.post('/actualizar/:id', setTicketActualizado);
 router.post('/actualizarAbierto', setTicketAbierto);
 router.get('/obtenCatalogEstatusTicket', catalogEstatusTicket);
 router.post('/solved',setTicketsolved);
+router.post('/estatusTerminado',updateEstatusTerminado);
 /********************************************************************************************* */
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
 //
@@ -66,5 +67,13 @@ function setTicketsolved(req, res) {
         });
 }
 
+
+function updateEstatusTerminado(req, res){
+  let datos = req.body;
+  ticketCrtl.updateEstatusTerminado(datos)
+  .then(function (result) {
+      res.json(result);
+  });
+}
 
 module.exports = router;

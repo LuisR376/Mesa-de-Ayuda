@@ -2,7 +2,8 @@
 const serviciosModels = require ('../models/servicios.model');
 module.exports = {
     fnGetServicios: fnGetServicios,
-    setServicios:setServicios
+    setServicios:setServicios,
+    updateServicio : updateServicio
 }
 
 function fnGetServicios(){
@@ -28,3 +29,15 @@ function setServicios(datos){
             });
     });
 }
+
+function updateServicio(datos){
+    return new Promise(function (resolve) {
+        serviciosModels.updateServicio(datos)
+            .then(function (result) {
+                resolve(!result.err ? {ok:true, mensaje: "Servicio actualizado a finalizado"}: reject({ok:false, error:'Error al actualizar Servicios'}))
+
+            });
+    });
+}
+
+
