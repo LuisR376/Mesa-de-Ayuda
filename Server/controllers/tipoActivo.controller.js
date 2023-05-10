@@ -11,7 +11,7 @@ function fnGetTipoActivos(){
         activostipoModels.fnGetTipoActivos()
         .then(function(result){
             
-            resolve(!result.err ? {ok:true, activos:result.result}: reject({ok:false, error:'Error al consultar Tipo de Activos'}))
+            resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar Tipo de Activos'}))
         })
     })
 }

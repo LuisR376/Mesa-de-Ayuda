@@ -5,6 +5,7 @@ const serviciosCrtl = require ('../controllers/servicios.controller');
 /***************************RUTAS BASE GET,GETBYID,UPDATE,SET********************************** */
 router.get('/get',fnGetServicios);
 router.post('/post', setServicios);
+router.post('/updateServ',updateServicio);
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -24,5 +25,16 @@ function setServicios(req, res) {
             res.json(result);
         });
 }
+
+function updateServicio(req, res) {
+    let datos = req.body;
+    console.log("--------*******------------->",datos);
+    serviciosCrtl.updateServicio(datos)
+        .then(function (result) {
+            res.json(result);
+        });
+}
+
+
 
 module.exports = router;
