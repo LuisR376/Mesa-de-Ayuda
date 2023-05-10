@@ -3,7 +3,8 @@ const licenciasModels = require ('../models/licencias.model');
 module.exports = {
     fnGetLicencias: fnGetLicencias,
     setLicencias: setLicencias,
-    upLicencias:upLicencias
+    upLicencias:upLicencias,
+    deleteLicencias : deleteLicencias
 }
 
 function fnGetLicencias(){
@@ -42,3 +43,16 @@ function upLicencias(datos){
             });
     });
 }
+
+function deleteLicencias(datos){
+    return new Promise(function (resolve, reject) {
+        licenciasModels.deleteLicencias(datos)
+            .then(function (result) {
+                resolve({ ok: true, addenda: result.result });
+            })
+            .catch(function(error) {
+                reject({ ok: false, error: error });
+            });
+    });
+}
+

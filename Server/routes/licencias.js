@@ -6,6 +6,7 @@ const licenciasCrtl = require ('../controllers/licencias.controller');
 router.get('/get',fnGetLicencias);
 router.post('/post', setLicencias);
 router.post('/updatelicencias', upLicencias);
+router.post('/deletelicencias', deleteLicencias);
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -29,6 +30,15 @@ function setLicencias(req, res) {
 function upLicencias(req, res) {
     let datos = req.body;
     licenciasCrtl.upLicencias(datos)
+        .then(function (result) {
+            res.json(result);
+        });
+}
+
+
+function deleteLicencias(req, res) {
+    let datos = req.body;
+    licenciasCrtl.deleteLicencias(datos)
         .then(function (result) {
             res.json(result);
         });
