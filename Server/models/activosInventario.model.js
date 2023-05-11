@@ -35,6 +35,7 @@ function agregaActivos(datos) {
 
 function nomEquipo(datos) {
     return helpers.mysqlQuery('GET', conn_mysql,
-   `call setActivo(@idlugar,@idarea,@nombre_propietario, @nombre_equipo, @num_empleado, @password, @fecha_mantenimiento, @valor_monetario, @estado, @descripcion, @tipo_de_conexion, @iddetallepc, @idLicencias, @idtipoactivo, @host_teamviewer, @password_teamviewer, @calculoEstimado, @Pertenencia)` 
+   ` INSERT INTO activos (iddetallepc, idtipoactivo, Pertenencia) 
+   VALUES (@iddetallepc, @idtipoactivo, @Pertenencia);` 
    ,datos)
 }
