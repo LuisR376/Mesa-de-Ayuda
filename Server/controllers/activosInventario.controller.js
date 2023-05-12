@@ -3,7 +3,8 @@ const activosModels = require ('../models/activosInventario.model');
 module.exports = {
     fnGetActivos: fnGetActivos,
     agregaActivos : agregaActivos,
-    fnactivosNumInventario:fnactivosNumInventario
+    fnactivosNumInventario:fnactivosNumInventario,
+    activosPersonales : activosPersonales
 }
 
 function fnGetActivos(){
@@ -39,3 +40,14 @@ function agregaActivos(datos){
             });
     });
 }
+function activosPersonales(datos){
+        return new Promise(function (resolve, reject) {
+            activosModels.updateActivo(datos)
+                .then(function (result) {
+                    resolve({ ok: true, Error: result.result });
+                })
+                .catch(function(error) {
+                    reject({ ok: false, error: error });
+                });
+        });
+    }

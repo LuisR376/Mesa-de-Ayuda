@@ -6,6 +6,8 @@ const activoCtrl = require ('../controllers/activosInventario.controller');
 router.get('/getActivos',fnGetActivos);
 router.post('/postInventario',agregaActivos);
 router.get('/numInventario',fnactivosNumInventario);
+
+router.post('/datosPersonales',activosPersonales);
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -26,6 +28,13 @@ function fnactivosNumInventario(req,res){
 function agregaActivos(req, res) {
     let datos = req.body;
     activoCtrl.agregaActivos(datos)
+        .then(function (result) {
+            res.json(result);
+        });
+}
+function activosPersonales(req, res) {
+    let datos = req.body;
+    activoCtrl.activosPersonales(datos)
         .then(function (result) {
             res.json(result);
         });

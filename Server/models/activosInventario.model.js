@@ -4,7 +4,8 @@ module.exports = {
     fnGetActivos: fnGetActivos,
     agregaActivos : agregaActivos,
     nomEquipo : nomEquipo,
-    fnactivosNumInventario:fnactivosNumInventario
+    fnactivosNumInventario:fnactivosNumInventario,
+    updateActivo:updateActivo
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -38,4 +39,9 @@ function nomEquipo(datos) {
    ` INSERT INTO activos (iddetallepc, idtipoactivo, Pertenencia) 
    VALUES (@iddetallepc, @idtipoactivo, @Pertenencia);` 
    ,datos)
+}
+function updateActivo(datos){
+    return helpers.mysqlQuery('POST',conn_mysql,
+    `UPDATE activos SET nombre_propietario = @nombre_propietario,num_empleado = @num_empleado,password = @password WHERE idactivos  = @idactivos;`,datos
+    )
 }
