@@ -1,5 +1,6 @@
 'use strict'
 const activosModels = require('../models/activosInventario.model');
+const moment = require('moment');
 module.exports = {
     fnGetActivos: fnGetActivos,
     agregaActivos: agregaActivos,
@@ -82,6 +83,13 @@ function activosDescripcion(datos) {
 
 function activosManteimiento(datos) {
     return new Promise(function (resolve, reject) {
+         let fecha1 = datos.fecha_mantenimiento =  moment(  datos.fecha_mantenimiento );
+         let fecha2= datos.calculoEstimado = moment(  datos.calculoEstimado );
+         console.log("datos.calculoEstimado",datos.calculoEstimado);
+        const diferenciaDias = fecha2.diff(fecha1 , 'days');
+        datos.calculoEstimado   =  diferenciaDias;
+        datos.fecha_mantenimiento =  moment(  datos.fecha_mantenimiento ).format('YYYY-MM-DD');
+        console.log("Calculo dias", datos)
         activosModels.updateMantenimientoActivos(datos)
             .then(function (result) {
                 resolve({ ok: true, Error: result.result });
