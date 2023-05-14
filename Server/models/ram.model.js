@@ -3,7 +3,7 @@ const helpers = require('../modules/helpers');
 module.exports = {
     fnGetRam: fnGetRam,
     setRam: setRam,
-    existNomRam: existNomRam
+    RamInsert: RamInsert
 
 }
 //
@@ -20,9 +20,9 @@ function setRam(datos) {
     `SELECT * FROM ram`
     ,datos)
 }
-function existNomRam(datos) {
-    
+function RamInsert(datos) {
+    console.log(datos);
     return helpers.mysqlQuery('GET', conn_mysql,
-    `call setRol(@descripcion_rol)`
+    `insert into ram(nombre, capacidad, marca) values (@nombre,@capacidad,@marca)`
     ,datos)
 }

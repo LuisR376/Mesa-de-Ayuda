@@ -17,15 +17,13 @@ function fnGetRam(){
     })
 }
 function setRam(datos){
-    return new Promise(function (resolve) {
-        ramModels.existNomRam(datos)
+    return new Promise(function (resolve, reject) {
+        ramModels.RamInsert(datos)
             .then(function (result) {
-                
-                if (result.result[1]) {
-                    resolve({ ok: false, error: 'Ya Existe' });
-                } else {
-                    resolve({ ok: true, Error: result.result[0] });
-                }
+                resolve({ ok: true, Error: result.result });
+            })
+            .catch(function(error) {
+                reject({ ok: false, error: error });
             });
     });
 }

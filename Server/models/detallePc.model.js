@@ -5,7 +5,8 @@ module.exports = {
     setPc:setPc,
     existDetallePc:existDetallePc,
     ultimoidDetallePc:ultimoidDetallePc,
-    setDetalleDisco : setDetalleDisco
+    setDetalleDisco : setDetalleDisco,
+    setDetalleRam : setDetalleRam
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -24,7 +25,7 @@ function setPc(datos) {
 function ultimoidDetallePc(datos) {
     console.log(datos);
     return helpers.mysqlQuery('GET', conn_mysql,
-    `call setDetallesPc(@tipo_de_pc,@num_serie,@folio_compra)`
+    `call setDetallesPc(@tipo_de_pc,@modelo,@num_serie,@folio_compra,@procesador,@marca,@Sistema_Operativo,@idioma)`
     ,datos)
 }
 function existDetallePc(datos) {
@@ -41,5 +42,11 @@ function setDetalleDisco(datos) {
     ,datos)
 }
 
+function setDetalleRam(datos) {
+    console.log("setDetalleRam",datos);
+    return helpers.mysqlQuery('GET', conn_mysql,
+    `insert into detallepc_ram(iddetallepc, idram) values (@iddetalle,@idram )`
+    ,datos)
+}
 
 

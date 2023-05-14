@@ -2,8 +2,7 @@
 const helpers = require('../modules/helpers');
 module.exports = {
     fnGetdiscoDuro: fnGetdiscoDuro,
-    setDiscod:setDiscod,
-    existDd:existDd
+    DiscoduroInsert:DiscoduroInsert
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -13,15 +12,9 @@ function fnGetdiscoDuro(){
     `SELECT * FROM discoduro`
     )
 }
-function setDiscod(datos) {
-    
+function DiscoduroInsert(datos) {
+    console.log(datos);
     return helpers.mysqlQuery('GET', conn_mysql,
-    `SELECT * FROM discoduro`
-    ,datos)
-}
-function existDd(datos) {
-    
-    return helpers.mysqlQuery('GET', conn_mysql,
-    `call setLugar(@ubicacion)`
+    `insert into discoduro(cap_almacenamiento, tecnologia_M_S, marca) values (@cap_almacenamiento,@tecnologia_M_S,@marca)`
     ,datos)
 }

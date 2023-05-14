@@ -2,7 +2,7 @@
 const ddModels = require ('../models/discoduro.model');
 module.exports = {
     fnGetdiscoDuro: fnGetdiscoDuro,
-    setDiscod:setDiscod
+    setDd:setDd
 }
 
 function fnGetdiscoDuro(){
@@ -16,16 +16,14 @@ function fnGetdiscoDuro(){
         })
     })
 }
-function setDiscod(datos){
-    return new Promise(function (resolve) {
-        ddModels.existDd(datos)
+function setDd(datos){
+    return new Promise(function (resolve, reject) {
+        ddModels.DiscoduroInsert(datos)
             .then(function (result) {
-                
-                if (result.result[1]) {
-                    resolve({ ok: false, error: 'Ya Existe' });
-                } else {
-                    resolve({ ok: true, Error: result.result[0] });
-                }
+                resolve({ ok: true, Error: result.result });
+            })
+            .catch(function(error) {
+                reject({ ok: false, error: error });
             });
     });
 }

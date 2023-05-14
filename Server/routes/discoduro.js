@@ -4,7 +4,7 @@ const router = express.Router();
 const ddCrtl = require ('../controllers/discoduro.controller');
 /***************************RUTAS BASE GET,GETBYID,UPDATE,SET********************************** */
 router.get('/getDd',fnGetdiscoDuro);
-router.post('/post', setDiscod);
+router.post('/post', setDd);
 /********************************************************************************************* */
 
 /*******************************Funciones BASE GET GETBYID, UPDATE ,SET*********************** */
@@ -16,9 +16,9 @@ function fnGetdiscoDuro(req,res){
         res.json(result);
     })
 }
-function setDiscod(req, res) {
+function setDd(req, res) {
     let datos = req.body;
-    ddCrtl.setDiscod(datos)
+    ddCrtl.setDd(datos)
         .then(function (result) {
             res.json(result);
         });
