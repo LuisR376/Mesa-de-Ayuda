@@ -69,4 +69,10 @@ api.use('/reasignacion',reasignacion)
 const verificaContrasena = require ('./Server/routes/verificaContrasena');
 api.use('/verificaContrasena',verificaContrasena)
 
+const equipos = require ('./Server/routes/equipos');
+api.use('/equipos',equipos)
+
+
+
+
 module.exports = api;

@@ -27,6 +27,8 @@ function setdetallePc(datos) {
                 }
                 setDiscoDuroDetallePc(iddetalle, datos);
                 setRamDetallePc(iddetalle, datos);
+                resolve({ ok: true, mensaje: 'Se guardo exitosamente' });
+
             });
     });
 }
