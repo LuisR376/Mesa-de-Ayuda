@@ -2,7 +2,8 @@
 const detallePcModels = require ('../models/detallePc.model');
 module.exports = {
     fnGetDetallePc: fnGetDetallePc,
-    setPc:setPc
+    setPc:setPc,
+    setdetallePc:setdetallePc
 }
 
 function fnGetDetallePc(){
@@ -16,6 +17,63 @@ function fnGetDetallePc(){
         })
     })
 }
+function setdetallePc(datos) {
+    return new Promise(function (resolve) {
+        detallePcModels.ultimoidDetallePc(datos)
+            .then(function (result) {
+                let iddetallepc = JSON.parse(JSON.stringify(result.result[0]))
+                let iddetalle = {
+                    iddetallepc: iddetallepc[0].ultimoIdetalle
+                }
+                setDiscoDuroDetallePc(iddetalle,datos);
+               /// setRamDetallePc(iddetalle, datos);
+            });
+    });
+}
+
+
+function setDiscoDuroDetallePc(iddetalle, datos){
+    return new Promise(function (resolve) {
+        if(datos.iddiscoduro.length >0){
+            console.log("iddetalle, datos",iddetalle.iddetallepc, datos);
+            let discosDuros = datos.iddiscoduro;
+            const promises = [];
+            discosDuros.forEach((item) => {
+                promises.push({ iddetalle  : iddetalle.iddetallepc ,iddiscoduro :  item.iddiscoduro});
+              });
+              Promise.all(promises)
+                .then((resultDisco) => {
+                  console.log('All items processed',resultDisco);
+                   recorreArrayDiscos(resultDisco);
+                })
+                .catch((error) => {
+                  console.error(error);
+                });
+        }
+    });
+}
+
+function recorreArrayDiscos(discos){
+    return new Promise(function (resolve) {
+        for(let key in discos ){
+          setDiscoDetalle(discos[key]);
+        }
+    });
+}
+
+function setDiscoDetalle(disco){
+    return new Promise(function (resolve) {
+        setTimeout(function(){
+            detallePcModels.setDetalleDisco(disco)
+            .then(function (result) {
+                resolve({ ok: true, mensaje: 'Se guardo exitosamente' });
+    
+            });
+        },500);
+       
+    });
+}
+
 function setPc(datos){
     return new Promise(function (resolve) {
         detallePcModels.existDetallePc(datos)
