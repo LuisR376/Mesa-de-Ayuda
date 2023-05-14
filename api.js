@@ -73,6 +73,10 @@ const equipos = require ('./Server/routes/equipos');
 api.use('/equipos',equipos)
 
 
+const accesorios = require ('./Server/routes/accesorio');
+api.use('/accesorio',accesorios)
+
+
 
 
 module.exports = api;
