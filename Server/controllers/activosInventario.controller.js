@@ -8,7 +8,8 @@ module.exports = {
     activosPersonales: activosPersonales,
     activosUbicacion: activosUbicacion,
     activosDescripcion: activosDescripcion,
-    activosManteimiento: activosManteimiento
+    activosManteimiento: activosManteimiento,
+    fnGetActivosByid:fnGetActivosByid
 }
 
 function fnGetActivos() {
@@ -98,4 +99,15 @@ function activosManteimiento(datos) {
                 reject({ ok: false, error: error });
             });
     });
+    
+}
+function fnGetActivosByid(idactivos){
+    
+    return new Promise (function(resolve,reject){
+        activosModels.fnGetActivosByid(idactivos)
+        .then(function(result){
+            
+            resolve(!result.err ? {ok:true, addenda:result.result}: reject({ok:false, error:'Error al consultar idactivos'}))
+        })
+    })
 }

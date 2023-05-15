@@ -6,7 +6,7 @@ const activoCtrl = require('../controllers/activosInventario.controller');
 router.get('/getActivos', fnGetActivos);
 router.post('/postInventario', agregaActivos);
 router.get('/numInventario', fnactivosNumInventario);
-
+router.get('/getActivosById/:idactivos', fnGetActivosByid);
 router.post('/datosPersonales', activosPersonales);
 router.post('/datosUbicacion', activosUbicacion);
 router.post('/activosDescripcion', activosDescripcion);
@@ -65,5 +65,13 @@ function activosManteimiento(req, res) {
         .then(function (result) {
             res.json(result);
         });
+}
+function fnGetActivosByid(req, res){
+    let idactivos = req.params.id
+    
+        activoCtrl.fnGetActivosByid({idactivos})
+        .then(function(result){
+        res.json(result);
+    });
 }
 module.exports = router;

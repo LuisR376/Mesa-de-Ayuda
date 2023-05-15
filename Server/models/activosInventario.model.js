@@ -8,7 +8,8 @@ module.exports = {
     updateActivo: updateActivo,
     updateActivoUbicacion: updateActivoUbicacion,
     updateDatosActivos: updateDatosActivos,
-    updateMantenimientoActivos: updateMantenimientoActivos
+    updateMantenimientoActivos: updateMantenimientoActivos,
+    fnGetActivosByid:fnGetActivosByid
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -77,3 +78,14 @@ function updateMantenimientoActivos(datos) {
     )
 }
 
+function fnGetActivosByid(idactivos) {
+
+    return helpers.mysqlQuery('GET', conn_mysql,
+        `SELECT a.*, d.modelo,d.marca,d.num_serie, t.descripcion as tipo_activo_desc FROM 
+    activos a,
+    detallepc d,
+    tipoactivo t
+     WHERE 
+     a.iddetallepc = d.iddetallepc and a.idtipoactivo = t.idtipoactivo;`,idactivos
+    )
+}
