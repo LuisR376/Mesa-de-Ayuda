@@ -76,20 +76,25 @@ function fnGetTipodeServicioDefault(){
     });
 }
 function setTicketActualizado(idFolios, datos) {
-    
-  return new Promise(function (resolve) {
+  return new Promise(function (resolve, reject) {
     ticketModels.setTicketActualizado(idFolios, datos)
       .then(function (result) {
         
         if (!result.err) {
           datos = result.result; // aquí guardamos el resultado de la actualización en el parámetro 'datos'
           resolve({ ok: true, mensaje: 'Se actualizó correctamente', addenda: datos });
-        } else {
-          resolve({ ok: false, mensaje: 'No se pudo actualizar', addenda: null });
-        }
+        } 
+      })
+      .catch(function (error) {
+        reject(error);
       });
   });
 }
+
+
+
+
+
 function setTicketAbierto(datos) {
   return new Promise(function (resolve, reject) {
    

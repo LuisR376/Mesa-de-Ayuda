@@ -63,9 +63,6 @@ api.use('/ram',ram)
 const discoduro = require ('./Server/routes/discoduro');
 api.use('/discoduro',discoduro)
 
-const reasignacion = require ('./Server/routes/reasignacion');
-api.use('/reasignacion',reasignacion)
-
 const verificaContrasena = require ('./Server/routes/verificaContrasena');
 api.use('/verificaContrasena',verificaContrasena)
 
