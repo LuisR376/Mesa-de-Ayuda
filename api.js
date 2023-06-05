@@ -73,7 +73,8 @@ api.use('/equipos',equipos)
 const accesorios = require ('./Server/routes/accesorio');
 api.use('/accesorio',accesorios)
 
-
+const emailer = require ('./Server/routes/emailer.js');
+api.use('/emailer',emailer)
 
 
 module.exports = api;

@@ -12,7 +12,8 @@ module.exports = {
     setTicketActualizado: setTicketActualizado,
   setTicketAbierto: setTicketAbierto,
     setTicketsolved:setTicketsolved,
-    updateEstatusTerminado : updateEstatusTerminado
+  updateEstatusTerminado: updateEstatusTerminado,
+    enviarCorreoTicket:enviarCorreoTicket
 }
 function fnGetTicketByid(idFolios){
     
@@ -153,4 +154,36 @@ function updateEstatusTerminado(datos) {
         reject(error);
       });
   });
+}
+async function enviarCorreoTicket() {
+    try {
+        const correosServicio = await ticketModels.fnObtenerCorreos(); //se puede optener el usuario por id de usuario que levanto el ticket
+        if (!correosServicio.err) {
+            let informacionCorreo = correosServicio.result[0];
+            console.log("lelgo")
+            const enviarCorreo = await Promise.each(informacionCorreo, function (key) {
+                fnEnviarCorreoTicketEspera(key)
+            }).then(function (result) {
+                return ({ mensaje: 'Correos enviados con exito.', ok: true });
+            })
+            return enviarCorreo;
+
+        } else {
+            return ({ ok: false, mensaje: 'Error No se ha podido obtener los tickets' });
+        }
+    } catch (err) {
+        return ({ ok: false, mensaje: 'Error grave al enviar correos' });
+    }
+}
+function fnEnviarCorreoTicketEspera(datos) {
+    return new Promise(function (resolve, reject) {
+        console.log("fnEnviarCorreoTicketEspera", datos)
+        datos.correo = datos.client_correo;
+        var html = fs.readFileSync(path.resolve(__dirname, '../email/correoGraciasPreferencia.html'), 'utf8');
+        let subjet = 'Titulo del Mensaje o pie de pagina';
+       // html = html.replace("{{ clientAm }}", datos.client_am);
+        nodemailer.enviarMail(datos.correo, html, subjet);
+
+        resolve({ ok: true, mensaje: 'El mensaje se ha enviado correctamente' });
+    })
 }
