@@ -11,8 +11,8 @@ function enviarMail(to, body, subject){
   console.log("informacion correo",to,subject)
     return new Promise (function (resolve, reject) {
       var transporter = nodemailer.createTransport({
-        host: 'smtp.Outlook.com',
-        port: 465,
+        host: 'smtp-mail.outlook.com',
+        port: 587,
         secure: true,
         auth: {
           user: 'andres.morales@linkbits.online',

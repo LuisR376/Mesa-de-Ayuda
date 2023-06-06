@@ -1,40 +1,47 @@
 'use strict';
 const nodemailer = require('nodemailer');
+const express = require('express');
+const path = require('path');
 const emailModel = require('../models/emailer.model');
-
-function sendEmail(req, res) {
-    const datos = req.body;
-
-    const transporter = nodemailer.createTransport({
-        service: 'outlook',
-        port: 465,
-        secure: false, // En caso de que el puerto no sea seguro (TLS)
-        auth: {
-            user: 'andres.morales@linkbits.online',
-            pass: '%?_K)V2PrDy1'
-        }
-        
-    });
-
-    const mailOptions = {
-        from: 'andres.morales@linkbits.online',
-        to: datos.to,
-        subject: 'Notificación de apertura de ticket de mesa de ayuda',
-        text: `Se ha abierto un nuevo ticket de mesa de ayuda con el siguiente ID: ${datos.idticket}`
-    };
-
-    emailModel.sendNotification(mailOptions, transporter)
-        .then(function () {
-            console.log('Correo enviado correctamente');
-            res.send('Correo enviado correctamente');
-        })
-        .catch(function (error) {
-            console.log(error);
-            res.status(500).send('Error al enviar el correo');
-        }
-        );
-}
 
 module.exports = {
     sendEmail: sendEmail
 };
+
+function sendEmail(to, body, subject){
+  console.log("informacion correo",to,subject)
+    return new Promise (function (resolve, reject) {
+      var transporter = nodemailer.createTransport({
+        Server: 'smtp-mail.outlook.com',
+        port: 587,
+        secure: true,
+        auth: {
+          user: 'andres.morales@linkbits.online',
+          pass: '%?_K)V2PrDy1'
+        }
+      });
+  
+      
+      var message = {
+        from: '"CarCon"<andres.morales@linkbits.online>',
+        to: to,
+        subject: subject,
+        //attachments: [{
+            // filename: 'movil-header.png',
+           // path: __dirname+'/logo.png',
+            // cid: 'imagest' //same cid value as in the html img src
+      //  }],
+        html: body 
+      };
+  
+      transporter.sendMail(message, function(err) {
+        if (!err) {
+          console.log('Email enviado ');
+        } else
+          console.log("error al enviar correo",err);
+          resolve();
+      });
+    });
+  }
+
+

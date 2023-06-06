@@ -83,7 +83,7 @@ function updateEstatusTerminado(datos) {
 //hacer un product precedure de los correos electronicos
 function fnObtenerCorreos() {
     return helpers.mysqlQuery('GET', conn_mysql,
-        ` call getCorreos();
+        ` call getCorreosUsuariosFromTickets();
         `
         , )
 }

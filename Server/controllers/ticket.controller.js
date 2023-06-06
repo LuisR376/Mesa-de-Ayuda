@@ -162,7 +162,7 @@ async function enviarCorreoTicket() {
             let informacionCorreo = correosServicio.result[0];
             console.log("lelgo")
             const enviarCorreo = await Promise.each(informacionCorreo, function (key) {
-                fnEnviarCorreoTicketEspera(key)
+                fnEnviarCorreoTicketEspera.RowDataPacket[0](key)
             }).then(function (result) {
                 return ({ mensaje: 'Correos enviados con exito.', ok: true });
             })
@@ -181,7 +181,9 @@ function fnEnviarCorreoTicketEspera(datos) {
         datos.correo = datos.client_correo;
         var html = fs.readFileSync(path.resolve(__dirname, '../email/correoGraciasPreferencia.html'), 'utf8');
         let subjet = 'Titulo del Mensaje o pie de pagina';
-       // html = html.replace("{{ clientAm }}", datos.client_am);
+      html = html.replace("{{ numEmpl_Tecnicos }}", datos.numEmpl_Tecnicos);
+      html = html.replace("{{ asunto }}", datos.asunto);
+       html = html.replace("{{ mensaje }}", datos.mensaje);
         nodemailer.enviarMail(datos.correo, html, subjet);
 
         resolve({ ok: true, mensaje: 'El mensaje se ha enviado correctamente' });
