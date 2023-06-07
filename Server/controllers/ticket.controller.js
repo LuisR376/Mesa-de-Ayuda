@@ -3,7 +3,8 @@ const { reject } = require('bluebird');
 const ticketModels = require ('../models/ticket.model');
 const tipoServicioModel = require ('../models/tipodeServicio.model');
 const { log } = require('console');
-
+const path = require('path');
+const fs = require('fs');
 module.exports = {
     fnGetTicket: fnGetTicket,
     setTicket:setTicket,
@@ -162,7 +163,7 @@ async function enviarCorreoTicket() {
             let informacionCorreo = correosServicio.result[0];
             console.log("lelgo")
             const enviarCorreo = await Promise.each(informacionCorreo, function (key) {
-                fnEnviarCorreoTicketEspera.RowDataPacket[0](key)
+                fnEnviarCorreoTicketEspera(key)
             }).then(function (result) {
                 return ({ mensaje: 'Correos enviados con exito.', ok: true });
             })
@@ -179,7 +180,7 @@ function fnEnviarCorreoTicketEspera(datos) {
     return new Promise(function (resolve, reject) {
         console.log("fnEnviarCorreoTicketEspera", datos)
         datos.correo = datos.client_correo;
-        var html = fs.readFileSync(path.resolve(__dirname, '../email/correoGraciasPreferencia.html'), 'utf8');
+        var html = fs.readFileSync(path.resolve(__dirname, '../email/correoParaAdministrador.html'), 'utf8');
         let subjet = 'Titulo del Mensaje o pie de pagina';
       html = html.replace("{{ numEmpl_Tecnicos }}", datos.numEmpl_Tecnicos);
       html = html.replace("{{ asunto }}", datos.asunto);

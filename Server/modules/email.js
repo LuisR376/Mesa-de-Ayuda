@@ -1,18 +1,14 @@
 'use strict';
 const nodemailer = require('nodemailer');
-const express = require('express');
-const path = require('path');
 module.exports = {
     enviarMail : enviarMail
 }
-
-
 function enviarMail(to, body, subject){
   console.log("informacion correo",to,subject)
     return new Promise (function (resolve, reject) {
       var transporter = nodemailer.createTransport({
-        host: 'smtp-mail.outlook.com',
-        port: 587,
+        host: 'mail.linkbits.online',
+        port: 465,
         secure: true,
         auth: {
           user: 'andres.morales@linkbits.online',
@@ -22,6 +18,7 @@ function enviarMail(to, body, subject){
   
       
       var message = {
+        
         from: '"Tickets"<andres.morales@linkbits.online>',
         to: to,
         subject: subject,
