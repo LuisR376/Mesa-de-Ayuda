@@ -42,9 +42,7 @@ function setTicket(datos) {
   return new Promise(function (resolve) {
     fnGetTipodeServicioDefault().then(function (result) {
       datos.idtipo_servicio = result.addenda[0].idtipo_servicio;
-      ticketModels
-        .setTicket(datos)
-        .then(function (result) {
+      ticketModels.setTicket(datos).then(function (result) {
           if (!result.err) {
             resolve({ ok: false, mensaje: 'Se agrego Correctamente' });
           } else if (
