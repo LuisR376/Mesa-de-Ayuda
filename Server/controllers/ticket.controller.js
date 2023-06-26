@@ -156,7 +156,7 @@ function updateEstatusTerminado(datos) {
 }
 async function enviarCorreoTicket() {
     try {
-        const correosServicio = await ticketModels.fnObtenerCorreos(); //se puede optener el usuario por id de usuario que levanto el ticket
+        const correosServicio = await ticketModels.fnObtenerCorreosTicket(); //se puede optener el usuario por id de usuario que levanto el ticket
         if (!correosServicio.err) {
             let informacionCorreo = correosServicio.result[0];
             console.log("lelgo")

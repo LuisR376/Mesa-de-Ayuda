@@ -9,7 +9,7 @@ module.exports = {
     setTicketAbierto: setTicketAbierto,
     setTicketsolved:setTicketsolved,
     updateEstatusTerminado: updateEstatusTerminado,
-    fnObtenerCorreos : fnObtenerCorreos
+    fnObtenerCorreosTicket : fnObtenerCorreosTicket
 }
 //
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -81,7 +81,7 @@ function updateEstatusTerminado(datos) {
     ` UPDATE ticket SET idstatusticket = @idstatusticket WHERE idticket = @idticket;`, datos);
 }
 //hacer un product precedure de los correos electronicos
-function fnObtenerCorreos() {
+function fnObtenerCorreosTicket() {
     return helpers.mysqlQuery('GET', conn_mysql,
         ` call getCorreosUsuariosFromTickets();
         `

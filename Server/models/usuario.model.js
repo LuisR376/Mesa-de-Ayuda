@@ -5,7 +5,8 @@ module.exports = {
     fnGetTecnicos:fnGetTecnicos,
     setUsuario:setUsuario,
     existNomUsuario:existNomUsuario,
-    findByIdAndUpdate:findByIdAndUpdate,
+    findByIdAndUpdate: findByIdAndUpdate,
+    obtenClientePorCorreo : obtenClientePorCorreo
     }
 
 //crear una funcion de get usuarios que ara una peticion a la bd
@@ -43,4 +44,10 @@ function findByIdAndUpdate(id, datos) {
      
       return resultado;
     })
-  }
+}
+  
+function obtenClientePorCorreo(client_correo) {
+    return helpers.mysqlQuery('GET', conn_mysql,
+                ` call getusuarioporRol(@email);`
+        , client_correo)
+}
