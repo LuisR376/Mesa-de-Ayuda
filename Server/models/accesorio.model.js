@@ -5,8 +5,6 @@ module.exports = {
     SetAccesorio
 
 }
-//
-//crear una funcion de get usuarios que ara una peticion a la bd
 function GetAccesorio(){
     return helpers.mysqlQuery('GET',conn_mysql,
     `SELECT * FROM accesorios`

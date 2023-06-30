@@ -66,8 +66,7 @@ api.use('/discoduro',discoduro)
 const verificaContrasena = require ('./Server/routes/verificaContrasena');
 api.use('/verificaContrasena',verificaContrasena)
 
-const equipos = require ('./Server/routes/equipos');
-api.use('/equipos',equipos)
+
 
 
 const accesorios = require ('./Server/routes/accesorio');
